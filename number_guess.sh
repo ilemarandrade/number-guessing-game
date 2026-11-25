@@ -18,3 +18,25 @@ else
     echo -e "\nWelcome back, $NAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
   done
 fi
+
+SECRET_NUMBER=$((($RANDOM % 1000) + 1))
+
+echo -e "\nGuess the secret number between 1 and 1000"
+
+read USER_NUMBER
+
+
+while [[ $USER_NUMBER != $SECRET_NUMBER ]]
+do
+  if [[ $USER_NUMBER < $SECRET_NUMBER ]]
+  then
+    echo "It's higher than that, guess again:"
+  else
+    echo "It's lower than that, guess again:"
+  fi
+  
+  read USER_NUMBER
+done
+
+echo "You guessed it in <number_of_guesses> tries. The secret number was $SECRECT_NUMBER. Nice job!"
+
