@@ -21,10 +21,11 @@ fi
 
 SECRET_NUMBER=$((($RANDOM % 1000) + 1))
 
-echo -e "\nGuess the secret number between 1 and 1000"
+echo -e "\nGuess the secret number between 1 and 1000:"
 
 read USER_NUMBER
 
+TRIES=1
 
 while [[ $USER_NUMBER != $SECRET_NUMBER ]]
 do
@@ -34,9 +35,11 @@ do
   else
     echo "It's lower than that, guess again:"
   fi
+
+  TRIES=$(($TRIES + 1))
   
   read USER_NUMBER
 done
 
-echo "You guessed it in <number_of_guesses> tries. The secret number was $SECRECT_NUMBER. Nice job!"
+echo "You guessed it in $TRIES tries. The secret number was $SECRECT_NUMBER. Nice job!"
 
