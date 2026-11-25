@@ -5,6 +5,8 @@ echo "Enter your username:"
 
 read USERNAME
 
+USER_DATA="$($PSQL "SELECT u.name, COUNT(g.tries) AS games_played, coalesce(MIN(g.tries), 0) AS best_game FROM username AS u LEFT JOIN games_played AS g ON g.username_id=u.id WHERE name='$USERNAME' GROUP BY u.name")"
+
 if [[ -z $USER_DATA ]]
 then
   echo -e "\nWelcome, $USERNAME! It looks like this is your first time here."
@@ -47,6 +49,7 @@ do
   read USER_NUMBER
 done
 
+echo "$($PSQL "INSERT INTO games_played(username_id, tries, secret_number) VALUES($USERNAME_ID, $TRIES, $SECRET_NUMBER)")" | ""
 
 echo "You guessed it in $TRIES tries. The secret number was $SECRET_NUMBER. Nice job!"
 
