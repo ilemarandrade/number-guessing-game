@@ -41,5 +41,5 @@ do
   read USER_NUMBER
 done
 
-echo "You guessed it in $TRIES tries. The secret number was $SECRECT_NUMBER. Nice job!"
+echo "You guessed it in $TRIES tries. The secret number was $SECRET_NUMBER. Nice job!"
 
