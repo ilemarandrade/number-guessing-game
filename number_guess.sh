@@ -11,7 +11,7 @@ if [[ -z $USER_DATA ]]
 then
   echo -e "\nWelcome, $USERNAME! It looks like this is your first time here."
 
-  echo "$($PSQL "INSERT INTO username(name) VALUES('$USERNAME')")" | ""
+  $PSQL "INSERT INTO username(name) VALUES('$USERNAME')" > /dev/null
 else
   echo $USER_DATA | while IFS="|" read -r NAME GAMES_PLAYED BEST_GAME;
   do
@@ -49,7 +49,7 @@ do
   read USER_NUMBER
 done
 
-echo "$($PSQL "INSERT INTO games_played(username_id, tries, secret_number) VALUES($USERNAME_ID, $TRIES, $SECRET_NUMBER)")" | ""
+$PSQL "INSERT INTO games_played(username_id, tries, secret_number) VALUES($USERNAME_ID, $TRIES, $SECRET_NUMBER)" > /dev/null
 
 echo "You guessed it in $TRIES tries. The secret number was $SECRET_NUMBER. Nice job!"
 
